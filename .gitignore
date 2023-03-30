@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+.secrets
+mongodb-data/
+__pycache__/
+.DS_Store
+.env
+.vscode/

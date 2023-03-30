@@ -1,0 +1,7 @@
+name: web_spider
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - anaconda::anaconda
+  - pymongo

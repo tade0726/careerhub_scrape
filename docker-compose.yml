@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  scrapy:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - MONGO_HOST=mongo
+    depends_on:
+      - mongo
+    ports:
+      - "8888:8888"
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb-data:/data/db
