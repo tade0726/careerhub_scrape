@@ -13,6 +13,7 @@ def url_to_key(url: str) -> str:
     hash_object = hashlib.md5(url.encode())
     return hash_object.hexdigest()
 
+
 class CareerSpider(scrapy.Spider):
     """
     describle the spider:
@@ -70,7 +71,11 @@ class CareerSpider(scrapy.Spider):
         soup = BeautifulSoup(response.text, "html.parser")
         login_link = soup.find("a", class_="btn btn-primary btn-lg")["href"]
 
-        yield Request(url=login_link, callback=self.get_jobs,  meta={"type": response.meta.get("type")})
+        yield Request(
+            url=login_link,
+            callback=self.get_jobs,
+            meta={"type": response.meta.get("type")},
+        )
 
     def get_jobs(self, response):
         # Parse the job list
@@ -96,10 +101,7 @@ class CareerSpider(scrapy.Spider):
             )
 
         if not response.meta.get("page"):
-            page = soup.find_all("span", class_="pull-right")
-            page = page[0].text
-            page = page.split(" ")
-            total_page = page[-1]
+            total_page = soup.find("ul", class_="pagination").find_all("li")[-2].text
             for i in range(2, int(total_page) + 1):
                 yield Request(
                     response.url + f"?page={i}",

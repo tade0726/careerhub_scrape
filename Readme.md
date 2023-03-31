@@ -5,6 +5,10 @@ This repository houses a Scrapy project that specializes in scraping job posting
 The spider is programmed to navigate through two primary jobs channels, namely graduate-employment and internship, in search of job detail links. Additionally, it will extract pertinent information, such as open and close dates, from the job details.
 
 
+> Be awere: due to UI changes, the codes related to XML parsing may be broken.
+
+
+## Web examples
 Navigation page: 
 ![navigation page of career hub](./imgs/hub_list.jpg)
 
@@ -14,6 +18,7 @@ Data been scraped:
 
 ## Table of Contents
 
+- [Web examples](#web-examples)
 - [Getting Started](#getting-started)
 - [Docker Setup](#docker-setup)
 - [Local Python Environment](#local-python-environment)
@@ -65,19 +70,22 @@ make build_python_env
 
 ## Running the Spider
 
-Because it is within university network, you must be a student of Unversity of Adelaide, and put your student id and pass with system varibles, then they will be read in the `settings.py`:
+Because it is within university network, you must be a student of Unversity of Adelaide, and put your student id and pass in a file `.secrets` in the root diretory, then they will be read in the `settings.py`:
 
-```python
+
+Example of `.secrets`
+
+```shell
 # Access the SECRET_KEY environment variable
-USERNAME = os.getenv("USERNAME")
-PASSWORD = os.getenv("PASSWORD")
+export USERNAME="your name"
+export PASSWORD="your pass"
 ```
 
 
 To start the spider, use the following command:
 
 ```shell
-cd career_hub && python main.py
+source .secret && cd career_hub && python main.py
 ```
 
 Alternatively, you can use the provided Makefile command:

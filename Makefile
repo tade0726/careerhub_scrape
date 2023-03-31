@@ -17,7 +17,7 @@ build_python_env:
 
 
 run:
-	cd career_hub && python main.py
+	source .secrets && cd career_hub && python main.py
 
 
 update-env:

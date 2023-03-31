@@ -9,18 +9,6 @@
 
 import os
 
-def load_env():
-    # get the absolute path of the code file
-    code_dir = os.path.dirname(os.path.abspath(__file__))
-    env_path = os.path.join(os.path.dirname(os.path.dirname(code_dir)), '.secrets')
-    if os.path.exists(env_path):
-        with open(env_path, 'r') as f:
-            for line in f:
-                # parse the key-value pairs in the .env file
-                key, value = [x.strip() for x in line.strip().split('=')]
-                os.environ[key] = value
-load_env()
-
 # Access the SECRET_KEY environment variable
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
